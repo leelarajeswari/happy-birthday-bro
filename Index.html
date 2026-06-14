@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Brother ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0d1117;
+overflow:hidden;
+color:white;
+text-align:center;
+}
+
+#intro{
+position:fixed;
+width:100%;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#0d1117,#161b22);
+}
+
+#intro h1{
+font-size:2.5rem;
+padding:20px;
+}
+
+button{
+padding:15px 30px;
+border:none;
+border-radius:50px;
+background:#ff4d6d;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+#main{
+display:none;
+height:100vh;
+position:relative;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+opacity:0;
+transition:1s;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.slide.active{
+opacity:1;
+}
+
+.overlay{
+background:rgba(0,0,0,0.5);
+padding:20px;
+border-radius:20px;
+max-width:800px;
+}
+
+.message{
+font-size:2rem;
+line-height:1.5;
+}
+
+#final{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:linear-gradient(135deg,#ff4d6d,#6a11cb);
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.final-box{
+max-width:800px;
+}
+
+.final-box h1{
+font-size:3rem;
+margin-bottom:20px;
+}
+
+.final-box p{
+font-size:1.3rem;
+line-height:1.8;
+}
+</style>
+</head>
+
+<body>
+
+<div id="intro">
+<h1>🎁 A Special Surprise For My Brother ❤️</h1>
+<p style="margin-bottom:20px">Click below to open your birthday gift</p>
+<button onclick="startSurprise()">Open Surprise 🎂</button>
+</div>
+
+<div id="main">
+
+<div class="slide active" style="background-image:url('photo1.jpg')">
+<div class="overlay">
+<div class="message">
+From childhood memories to today,<br>
+you've always been my hero ❤️
+</div>
+</div>
+</div>
+
+<div class="slide" style="background-image:url('photo2.jpg')">
+<div class="overlay">
+<div class="message">
+A brother like you is a blessing<br>
+I thank God for every day 🙏
+</div>
+</div>
+</div>
+
+<div class="slide" style="background-image:url('photo3.jpg')">
+<div class="overlay">
+<div class="message">
+Thank you for protecting me,<br>
+supporting me and making me smile 😊
+</div>
+</div>
+</div>
+
+<div class="slide" style="background-image:url('photo4.jpg')">
+<div class="overlay">
+<div class="message">
+No matter how much we grow,<br>
+you'll always be my favorite person ❤️
+</div>
+</div>
+</div>
+
+<div class="slide" style="background-image:url('photo5.jpg')">
+<div class="overlay">
+<div class="message">
+Today is all about celebrating YOU 🎉
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="final">
+<div class="final-box">
+<h1>🎂 Happy Birthday Brother ❤️</h1>
+<p>
+Thank you for being my strength,<br>
+my best friend,<br>
+and my biggest supporter.<br><br>
+
+May this year bring you happiness,<br>
+success, good health,<br>
+and everything you dream of.<br><br>
+
+💖 Love You Forever 💖
+</p>
+</div>
+</div>
+
+<script>
+function startSurprise(){
+
+document.getElementById("intro").style.display="none";
+document.getElementById("main").style.display="block";
+
+let slides=document.querySelectorAll(".slide");
+let current=0;
+
+let interval=setInterval(()=>{
+
+slides[current].classList.remove("active");
+current++;
+
+if(current<slides.length){
+slides[current].classList.add("active");
+}else{
+clearInterval(interval);
+document.getElementById("main").style.display="none";
+document.getElementById("final").style.display="flex";
+}
+
+},5000);
+
+}
+</script>
+
+</body>
+</html>
