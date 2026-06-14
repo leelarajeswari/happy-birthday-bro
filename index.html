@@ -1,1 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Brother ❤️</title>
 
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#000;
+overflow:hidden;
+color:white;
+}
+
+#intro{
+position:absolute;
+width:100%;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff4d6d,#6a11cb);
+text-align:center;
+padding:20px;
+}
+
+#intro h1{
+font-size:40px;
+margin-bottom:20px;
+animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{ text-shadow:0 0 10px white;}
+to{ text-shadow:0 0 30px yellow;}
+}
+
+button{
+padding:15px 30px;
+font-size:20px;
+border:none;
+border-radius:50px;
+cursor:pointer;
+background:white;
+color:#ff4d6d;
+font-weight:bold;
+}
+
+#main{
+display:none;
+width:100%;
+height:100vh;
+position:relative;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+opacity:0;
+transition:opacity 1.5s;
+}
+
+.slide.active{
+opacity:1;
+}
+
+.overlay{
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.35);
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.message{
+font-size:30px;
+font-weight:bold;
+text-shadow:2px 2px 10px black;
+}
+
+#final{
+display:none;
+position:absolute;
+width:100%;
+height:100vh;
+background:linear-gradient(135deg,#ff4d6d,#ffb347);
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+flex-direction:column;
+}
+
+#final h1{
+font-size:42px;
+margin-bottom:15px;
+}
+
+#final p{
+font-size:22px;
+max-width:700px;
+line-height:1.6;
+}
+
+.heart{
+position:absolute;
+font-size:25px;
+animation:floatUp 8s linear infinite;
+}
+
+@keyframes floatUp{
+0%{
+transform:translateY(100vh);
+opacity:1;
+}
+100%{
+transform:translateY(-100px);
+opacity:0;
+}
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+pointer-events:none;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+<source src="birthday.mp3" type="audio/mpeg">
+</audio>
+
+<div id="intro">
+<h1>🎂 Happy Birthday Brother 🎂</h1>
+<p style="font-size:20px;margin-bottom:20px;">
+A special surprise made with love ❤️
+</p>
+<button onclick="startSurprise()">Open Surprise 🎁</button>
+</div>
+
+<div id="main">
+
+<div class="slide active" style="background-image:url('IMG-20250321-WA0003-3.jpg')">
+<div class="overlay">
+<div class="message">
+The best brother anyone could ask for ❤️
+</div>
+</div>
+</div>
+
+<div class="slide" style="background-image:url('IMG-20250614-WA0011.jpg')">
+<div class="overlay">
+<div class="message">
+Your smile brings happiness to everyone 😊
+</div>
+</div>
+</div>
+
+<div class="slide" style="background-image:url('IMG-20250614-WA0012.jpg')">
+<div class="overlay">
+<div class="message">
+Thank you for always being there for me ❤️
+</div>
+</div>
+</div>
+
+<div class="slide" style="background-image:url('IMG-20250614-WA0013.jpg')">
+<div class="overlay">
+<div class="message">
+Every memory with you is precious ✨
+</div>
+</div>
+</div>
+
+<div class="slide" style="background-image:url('Snapchat-1537043895.jpg')">
+<div class="overlay">
+<div class="message">
+May this year bring success, joy and happiness 🎉
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="final">
+<h1>🎂 Happy Birthday Brother 🎂</h1>
+
+<p>
+Dear Brother,<br><br>
+
+You are not just my brother, you are my best friend,
+my support system and one of the most important people in my life.
+
+Thank you for all the memories, laughter and love.
+May your birthday be filled with happiness, success and endless blessings.
+
+❤️ Love You Always ❤️
+</p>
+</div>
+
+<canvas id="confetti"></canvas>
+
+<script>
+
+function startSurprise(){
+
+document.getElementById("intro").style.display="none";
+document.getElementById("main").style.display="block";
+
+let music=document.getElementById("bgMusic");
+music.play().catch(()=>{});
+
+let slides=document.querySelectorAll(".slide");
+let current=0;
+
+let interval=setInterval(()=>{
+
+slides[current].classList.remove("active");
+current++;
+
+if(current<slides.length){
+slides[current].classList.add("active");
+}else{
+clearInterval(interval);
+document.getElementById("main").style.display="none";
+document.getElementById("final").style.display="flex";
+}
+
+},5000);
+
+}
+
+function createHeart(){
+
+let heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(20+Math.random()*30)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},8000);
+
+}
+
+setInterval(createHeart,500);
+
+const canvas=document.getElementById("confetti");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let pieces=[];
+
+for(let i=0;i<150;i++){
+pieces.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*6+2,
+dx:Math.random()*2-1,
+dy:Math.random()*3+1
+});
+}
+
+function animate(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+pieces.forEach(p=>{
+
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle=`hsl(${Math.random()*360},100%,50%)`;
+ctx.fill();
+
+p.x+=p.dx;
+p.y+=p.dy;
+
+if(p.y>canvas.height){
+p.y=0;
+}
+
+});
+
+requestAnimationFrame(animate);
+}
+
+animate();
+
+window.addEventListener("resize",()=>{
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+});
+
+</script>
+
+</body>
+</html>
