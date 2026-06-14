@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Brother</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+overflow:hidden;
+background:black;
+color:white;
+}
+
+#intro{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff416c,#ff4b2b);
+text-align:center;
+padding:20px;
+}
+
+#intro h1{
+font-size:45px;
+margin-bottom:20px;
+}
+
+#intro button{
+padding:15px 30px;
+font-size:20px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+}
+
+#gallery{
+display:none;
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+background-size:cover;
+background-position:center;
+opacity:0;
+transition:1.5s;
+}
+
+.slide.active{
+opacity:1;
+}
+
+.overlay{
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.35);
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.message{
+font-size:30px;
+font-weight:bold;
+text-shadow:2px 2px 10px black;
+}
+
+#final{
+display:none;
+position:fixed;
+width:100%;
+height:100%;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+#final h1{
+font-size:45px;
+margin-bottom:20px;
+}
+
+#final p{
+font-size:22px;
+line-height:1.6;
+max-width:700px;
+}
+
+.heart{
+position:fixed;
+font-size:25px;
+animation:float 8s linear infinite;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh);
+opacity:1;
+}
+100%{
+transform:translateY(-100px);
+opacity:0;
+}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+<source src="birthday.mp3" type="audio/mpeg">
+</audio>
+
+<div id="intro">
+<h1>🎂 Happy Birthday Brother 🎂</h1>
+<p style="margin-bottom:20px;font-size:20px;">
+A Special Surprise For You ❤️
+</p>
+
+<button onclick="startSurprise()">
+Open Surprise 🎁
+</button>
+</div>
+
+<div id="gallery">
+
+<div class="slide active"
+style="background-image:url('IMG-20250321-WA00003-3.jpg')">
+<div class="overlay">
+<div class="message">
+My Amazing Brother ❤️
+</div>
+</div>
+</div>
+
+<div class="slide"
+style="background-image:url('IMG-20260614-WA0011.jpg')">
+<div class="overlay">
+<div class="message">
+Thank You For Always Being There 😊
+</div>
+</div>
+</div>
+
+<div class="slide"
+style="background-image:url('IMG-20260614-WA0012.jpg')">
+<div class="overlay">
+<div class="message">
+You Make Every Moment Special ✨
+</div>
+</div>
+</div>
+
+<div class="slide"
+style="background-image:url('IMG-20260614-WA0013.jpg')">
+<div class="overlay">
+<div class="message">
+Wishing You Success And Happiness 🎉
+</div>
+</div>
+</div>
+
+<div class="slide"
+style="background-image:url('Snapchat-1537043895.jpg')">
+<div class="overlay">
+<div class="message">
+Happy Birthday Dear Brother ❤️
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="final">
+<div>
+<h1>🎂 Happy Birthday 🎂</h1>
+
+<p>
+Dear Brother,<br><br>
+
+You are my strength, my best friend and one of the most important people in my life.
+
+May your birthday bring endless happiness, success, good health and beautiful memories.
+
+❤️ Love You Forever ❤️
+</p>
+</div>
+</div>
+
+<script>
+
+function startSurprise(){
+
+document.getElementById("intro").style.display="none";
+document.getElementById("gallery").style.display="block";
+
+document.getElementById("music").play().catch(()=>{});
+
+let slides=document.querySelectorAll(".slide");
+let current=0;
+
+let show=setInterval(()=>{
+
+slides[current].classList.remove("active");
+
+current++;
+
+if(current<slides.length){
+slides[current].classList.add("active");
+}else{
+clearInterval(show);
+document.getElementById("gallery").style.display="none";
+document.getElementById("final").style.display="flex";
+}
+
+},5000);
+
+}
+
+setInterval(()=>{
+
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},8000);
+
+},400);
+
+</script>
+
+</body>
+</html>
